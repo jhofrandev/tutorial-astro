@@ -1,13 +1,13 @@
 ---
-const pageTitle = "Sobre mi";
+import Layout from "../layouts/Layout.astro";
 
+const pageTitle = "Sobre mi";
 const identity = {
   firstName: "Sarah",
   country: "Canada",
   occupation: "Escritor técnico",
   hobbies: ["fotografia", "observación de aves", "peñarol"],
 };
-
 const skills = [
   "HTML",
   "CSS",
@@ -16,26 +16,16 @@ const skills = [
   "Astro",
   "Redacción de documentos",
 ];
-
 const happy = true;
-const finished = false;
+const finished = true;
 const goal = 3;
+const skillColor = "navy";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-  </head>
+<Layout pageTitle={pageTitle}>
   <body>
-    <a href="/">Inicio</a>
-    <a href="/about/">Sobre mi</a>
-    <a href="/blog/">Blog</a>
-
-    <h1>{pageTitle}</h1>
     <h2>... ¡y mi nuevo sitio Astro!</h2>
 
     <p>
@@ -63,9 +53,7 @@ const goal = 3;
     </ul>
 
     <p>Mis habilidades son:</p>
-    <ul>
-      {skills.map((skill) => <li>{skill}</li>)}
-    </ul>
+    <ul>{skills.map((skill) => <li class="skill">{skill}</li>)}</ul>
 
     {happy && <p>¡Estoy feliz de aprender Astro!</p>}
 
@@ -79,4 +67,12 @@ const goal = 3;
       )
     }
   </body>
-</html>
+
+  <style define:vars={{ skillColor, fontWeight, textCase }}>
+    .skill {
+      color: var(--skillColor);
+      font-weight: var(--fontWeight);
+      text-transform: var(--textCase);
+    }
+  </style>
+</Layout>
